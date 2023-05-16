@@ -24,6 +24,12 @@ class URLShortener:
         # Return the generated short code
         return short_code
     
+    def remove_mapping(self, short_code):
+        # Check if short code exists in the url_map dict
+        if short_code in self.url_map:
+            # Remoce the mapping from the url_map dict
+            del self.url_map[short_code]
+    
 if __name__ == '__main__':
     print(shortenUrl("https://fandm.instructure.com/?login_success=1"))
    
