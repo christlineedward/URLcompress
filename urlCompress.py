@@ -13,6 +13,8 @@ def shortenUrl(longUrl):
     # # use the tinyurl service to shorten the long URL and return the result
     return s.tinyurl.short(longUrl)
     
+        # Return the generated short code
+        return short_code
     
 if __name__ == '__main__':
     print(shortenUrl("https://fandm.instructure.com/?login_success=1"))
