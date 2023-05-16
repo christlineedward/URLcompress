@@ -29,6 +29,10 @@ class URLShortener:
         if short_code in self.url_map:
             # Remoce the mapping from the url_map dict
             del self.url_map[short_code]
+
+    def get_long_url(self, short_code):
+        # Retrieve long URL associated w the given short code from the url_map dict
+        return self.url_map.get(short_code)
     
 if __name__ == '__main__':
 
