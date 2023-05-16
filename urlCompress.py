@@ -31,5 +31,34 @@ class URLShortener:
             del self.url_map[short_code]
     
 if __name__ == '__main__':
-    print(shortenUrl("https://fandm.instructure.com/?login_success=1"))
+
+    # TESTS
+    # create an instance of URLShortener
+    shortener = URLShortener()
+
+    # add new mappings
+    shortcode1 = shortener.add_mapping("https://www.notion.so/tristanwedderburn/May-1st-Sync-Meeting-Notes-d849692fbcfd4bcbaecfc4cb734de894")
+    shortcode2 = shortener.add_mapping("https://github.com/christlineedward/URLcompress")
+
+    # print the short codes and their corresponding long URLs 
+    print("Short codes and long URLs: ")
+    print(f"{shortcode1}: {shortener.get_long_url(shortcode1)}")
+    print(f"{shortcode2}: {shortener.get_long_url(shortcode2)}")
+
+    # remove a mapping
+    shortener.remove_mapping(shortcode1)
+
+    # print the updated mappings
+    print("\nAfter removing a mapping: ")
+    print(f"{shortcode1}: {shortener.get_long_url(shortcode1)}")
+    print(f"{shortcode2}: {shortener.get_long_url(shortcode2)}")
+
+    # allow user input
+    long_url = input("\nEnter a long URL to shorten: ")
+    short_code = shortener.add_mapping(long_url)
+    print(f"\nShortened URL: {short_code}")
+    print(f"Original URL: {shortener.get_long_url(short_code)}")
+    
+    
+    # print(short_code("https://fandm.instructure.com/?login_success=1"))
    
