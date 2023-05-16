@@ -3,7 +3,7 @@
 #   - pyshorteners
 #   - shortuuid
 
-import pyshorteners
+import shortuuid
 
 def shortenUrl(longUrl):
     '''takes a long URL as a parameter and returns a shortened URL'''
