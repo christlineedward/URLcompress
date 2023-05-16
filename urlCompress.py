@@ -5,8 +5,16 @@
 
 import shortuuid
 
-def shortenUrl(longUrl):
-    '''takes a long URL as a parameter and returns a shortened URL'''
+class URLShortener:
+    # initialize 'url_map' attr to an empty dict
+    def __int__(self):
+        '''self = is just conventional naming for 1st parameter, url_map = attribute/instance variable that will store the mappings between short codes and long URLs '''
+        # initializing to empty dict - ensures each instance of the 'URLShortener' class 
+        # will have its own independent 'url_map' to store the mappings
+        self.url_map = {}
+        
+    def add_url_mapping(self, long_url):
+        '''takes a long URL as a parameter and returns a shortened URL'''
     #  create an instance of the Shortener class from the pyshorteners module
     s = pyshorteners.Shortener()
 
