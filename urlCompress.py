@@ -59,6 +59,8 @@ if __name__ == '__main__':
     print(f"\nShortened URL: {short_code}")
     print(f"Original URL: {shortener.get_long_url(short_code)}")
     
-    
+    # this prints out the contents of the current mappings
+    print("\nurl_map dictionary: ")
+    print(shortener.url_map)
     # print(short_code("https://fandm.instructure.com/?login_success=1"))
    
