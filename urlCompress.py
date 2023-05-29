@@ -1,38 +1,53 @@
 # NOTES 
 # 1. To generate a shortened URL, you can import from python library:
 #   - pyshorteners
-#   - shortuuid
+#   - shortuuid *** (universally unique identifier)
 
-import shortuuid
+
+from typing import Dict, Optional
+from url_shortener_app.models import URLMapping
+import shortuuid 
 
 class URLShortener:
     # initialize 'url_map' attr to an empty dict
-    def __int__(self):
+    def __init__(self):
         '''self = is just conventional naming for 1st parameter, url_map = attribute/instance variable that will store the mappings between short codes and long URLs '''
         # initializing to empty dict - ensures each instance of the 'URLShortener' class 
         # will have its own independent 'url_map' to store the mappings
-        self.url_map = {}
+        self.url_map = Dict[str, str] = {}
+        print(self.url_map)
         
-    def add_url_mapping(self, long_url):
+    def add_mapping(self, long_url: str) -> str:
         '''takes a long URL as a parameter and returns a shortened URL'''
-    #  create an instance of the Shortener class from the pyshorteners module
-    s = pyshorteners.Shortener()
+        # Generate a short code using the shortuuid module
+        short_code: str = shortuuid.uuid()[:8]
 
-    # # use the tinyurl service to shorten the long URL and return the result
-    return s.tinyurl.short(longUrl)
-    
+        # create a new URLMapping object with the generatedshort code and long URL
+        url_mapping = URLMapping(short_code=short_code, long_url=long_url)
+
+        # save the URLMapping object to the database 
+        url_mapping.save()
+
+
         # Return the generated short code
         return short_code
     
-    def remove_mapping(self, short_code):
-        # Check if short code exists in the url_map dict
-        if short_code in self.url_map:
-            # Remoce the mapping from the url_map dict
-            del self.url_map[short_code]
+    def remove_mapping(self, short_code: str) -> None:
+        # find the URLMapping object with the given short code and delete it from the database
+        URLMapping.onjects.filter(short_code=short_code).delete()
 
-    def get_long_url(self, short_code):
-        # Retrieve long URL associated w the given short code from the url_map dict
-        return self.url_map.get(short_code)
+    def get_long_url(self, short_code: str) -> Optional[str]:
+        try:
+            # Try to retrieve the URLMapping object with the given shortcode from the database
+            url_mapping = URLMapping.objects.get(short_code=short_code)
+        
+        # Retrieve long URL associated w the URLMapping object
+            return url_mapping.long_url
+        
+        except URLMapping.DoesNotExist:
+        # if the URLMapping object doesn't exist, return None
+            return None
+
     
 if __name__ == '__main__':
 
@@ -66,5 +81,3 @@ if __name__ == '__main__':
     # this prints out the contents of the current mappings
     print("\nurl_map dictionary: ")
     print(shortener.url_map)
-    # print(short_code("https://fandm.instructure.com/?login_success=1"))
-   
