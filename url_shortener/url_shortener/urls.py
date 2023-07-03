@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from url_shortener_app.views import URLMappingListView
+from url_shortener_app.views import URLMappingListView, URLMappingCreateView
 
 # Defining URL patterns for our application
 urlpatterns = [
@@ -25,5 +25,5 @@ urlpatterns = [
 
     # API URL pattern to include the generated URLs by the router
     path('urlmappings/', URLMappingListView.as_view(), name= 'urlmapping-list'),
-
+    path('createurlmapping/', URLMappingCreateView.as_view(), name= 'urlmapping-create'),
 ]

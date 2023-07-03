@@ -1,0 +1,28 @@
+<!-- url_mapping_list.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Mappings</title>
+</head>
+<body>
+    <h1>URL Mappings</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Short Code</th>
+                <th>Long URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for urlmapping in urlmappings %}
+            <tr>
+                <td>{{ urlmapping.short_code }}</td>
+                <td>{{ urlmapping.long_url }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

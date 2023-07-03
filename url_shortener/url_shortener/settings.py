@@ -56,7 +56,8 @@ ROOT_URLCONF = "url_shortener.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        # Note: search in the templates/ dir for all templates.
+        "DIRS": ["templates/"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -78,9 +79,9 @@ WSGI_APPLICATION = "url_shortener.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "db",
-        "USER": "user",
-        "PASSWORD": "password",
+        "NAME": "urlcompress",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
         "HOST": "127.0.0.1",
         "PORT": 5432,
     }

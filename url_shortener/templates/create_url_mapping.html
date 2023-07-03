@@ -1,0 +1,23 @@
+<!-- create_url_mapping.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create URL Mapping</title>
+</head>
+<body>
+    <h1>Create URL Mapping</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label for="short_code">Short Code:</label>
+        <input type="text" id="short_code" name="short_code" required><br>
+
+        <label for="long_url">Long URL:</label>
+        <input type="url" id="long_url" name="long_url" required><br>
+
+        <input type="submit" value="Create">
+    </form>
+</body>
+</html>
