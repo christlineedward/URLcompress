@@ -2,8 +2,17 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView
 from .models import URLMapping
 from .forms import URLMappingForm
+from django.http import JsonResponse
 
 # Create your views here.
+def list_urlmappings(request):
+    urlmappings = URLMapping.objects.all()
+
+    data = {
+        'urlmappings': list(urlmappings.values())
+    }
+
+    return JsonResponse(data)
 
 # Define a list view for all URLMapping objects
 class URLMappingListView(ListView):
